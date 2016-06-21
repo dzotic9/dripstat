@@ -9,7 +9,7 @@
 				"apps/management-and-monitoring", "apps/dev-and-admin-tools"
 		],
 		"name": "DripStat",
-		"logo": "https://raw.githubusercontent.com/jelastic-jps/DripStat/master/images/dripstat.png",
+		"logo": "https://raw.githubusercontent.com/jelastic-jps/dripstat/master/images/dripstat.png",
 		"version": "6.1.25",
 		"targetNodes": {
 			"nodeType": [
@@ -100,7 +100,7 @@
 				"executeShellCommands": [{
 						"nodeMission": "cp",
 						"commands": [
-								"curl -fsSL \"https://raw.githubusercontent.com/jelastic-jps/DripStat/master/scripts/dripstat.sh\" -o /tmp/dripstat.sh",
+								"curl -fsSL \"https://raw.githubusercontent.com/jelastic-jps/dripstat/master/scripts/dripstat.sh\" -o /tmp/dripstat.sh",
 								"/bin/bash /tmp/dripstat.sh ${settings.app_name} ${license.key} ${SERVER_LIBS} ${SERVER_CONF}"
 						]
 					}

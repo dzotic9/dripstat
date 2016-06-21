@@ -1,8 +1,8 @@
 #!/bin/bash
 APP_NAME=${1};
 LICENSE=${2};
-CONF_PROPERTIES="https://download.jelastic.com/public.php?service=files&t=dbdf9ec6db609a296d5e3b9246fefd95&download";
-JAR_FILE="https://download.jelastic.com/public.php?service=files&t=f7edeccab89a4429858945740f740061&download";
+CONF_PROPERTIES="https://raw.githubusercontent.com/jelastic-jps/dripstat/master/configs/config.properties";
+JAR_FILE="https://raw.githubusercontent.com/jelastic-jps/dripstat/master/scripts/dripstat.jar";
 
 installDripstat(){
     rm -rf ${CONF_PATH}/dripstat
