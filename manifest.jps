@@ -25,8 +25,8 @@
 		"license": {
 			"url": "http://7f0a21d8a92c209144be640de301ba79.app.jelastic.com/DripStat",
 			"terms": {
-				"en": "I agree with <a href='http://dripstat.com/tos.html' target='_blank'><u>terms of service</u>",
-				"ru": "Я соглашаюсь с <a href='http://dripstat.com/tos.html' target='_blank'><u>условиями использования</u>"
+				"en": "I agree with <a href='http://dripstat.com/tos.html' target='_blank'><u>terms of service</u></a>",
+				"ru": "Я соглашаюсь с <a href='http://dripstat.com/tos.html' target='_blank'><u>условиями использования</u></a>"
 			},
 			"sso": "http://7f0a21d8a92c209144be640de301ba79.app.jelastic.com/DripStat"
 		},
