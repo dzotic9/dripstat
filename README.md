@@ -46,9 +46,9 @@ This repository provides [DripStat](https://dripstat.com/) add-on for Jelastic P
 6. Optimize Hardware Utilization
 
 One of two initial options can be selected:
-- I'm a new user in DripStat:
+- I'm a new user in DripStat:<br />
 Select the "Application name" for your environment and fill in your first and last name to register at the DripStat control panel.
-- I already have a license key:    
+- I already have a license key:<br />
 Select the "Application name" for your environment and fill in your "License key" which will be used at the DripStat control panel.
 
 For more information on what DripStat Add-on can be used for, follow the [DripStat](https://dripstat.com/) reference.
