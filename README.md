@@ -1,15 +1,16 @@
-# Jelastic DripStat Add-on
+[![DripStat](images/dripstat_logo.png)](../../../dripstat)
+## Jelastic DripStat Add-on
 
 This repository provides [DripStat](https://dripstat.com/) add-on for Jelastic Platform.
 
 **DripStat** is a cool new way to monitor and look inside your running Java apps and automatically track exceptions. Jelastic users can enable DripStat monitoring on their Java apps with just a few clicks.
 
-**Type of nodes this add-on can be applied to**:
--  tomcat7
--  jetty6
--  tomcat6
--  glassfish3
--  tomee
+**Type of nodes this add-on can be applied to**: 
+-  Tomcat 6
+-  Tomcat 7
+-  Jetty 6
+-  Glassfish 3
+-  Tomee
 
 ### What it can be used for?
 1. Visibility Across Layers
@@ -44,24 +45,20 @@ This repository provides [DripStat](https://dripstat.com/) add-on for Jelastic P
 5. Alerts that don't overwhelm
 6. Optimize Hardware Utilization
 
-     
+One of two initial options can be selected:
+- I'm a new user in DripStat:
+Select the "Application name" for your environment and fill in your first and last name to register at the DripStat control panel.
+- I already have a license key:    
+Select the "Application name" for your environment and fill in your "License key" which will be used at the DripStat control panel.
 
+For more information on what DripStat Add-on can be used for, follow the [DripStat](https://dripstat.com/) reference.
 
-### What Jelastic add-on is?
+### Deployment
 
-Jelastic add-on represents a package with a kind of a patch, that can be applied to an environment in order to improve and complement its functionality. The full list of the available at a platform add-ons can be seen at the corresponding same-named section of [Jelastic Marketplace](https://docs.jelastic.com/marketplace#add-ons].
+In order to get this solution instantly deployed, click the "Get It Hosted Now" button, specify your email address within the widget, choose one of the [Jelastic Public Cloud providers](https://jelastic.cloud) and press Install.
 
-### How to install an add-on?
-###### For Developers
+[![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fdripstat%2Fraw%2Fmaster%2Fmanifest.jps)
 
-In case you can’t find the desired package within the list of available ones, copy and save the content of add-on’s manifest as a *.json* file and [import](https://docs.jelastic.com/environment-export-import#import) it to the dashboard. Herewith, you can apply any necessary adjustments to an add-on through this file (if such are required) and install its customized version in the similar way.
+To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../../raw/master/manifest.jps) within your dashboard ([detailed instruction](https://docs.jelastic.com/environment-export-import#import)).
 
-###### For Cluster Admins
-
-In order to add the desired add-on to your platform and make it available for users, perform the following:
-- copy content of its manifest 
-- switch to the [Marketplace](http://ops-docs.jelastic.com/marketplace-46) section of your JCA panel and choose **Add > Add-on** menu option
-- paste the copied strings into the appeared frame and **Save** the template
-- choose your newly added add-on within the list and click on **Publish** above
-
-Also, you are able to adjust the given add-on template according to your needs and provide its customized version.
+For more information on what Jelastic add-on is and how to apply it, follow the [Jelastic Add-ons](https://github.com/jelastic-jps/jpswiki/wiki/Jelastic-Addons) reference.
