@@ -47,6 +47,7 @@
 						"en": "Application name",
 						"ru": "Имя приложения"
 					},
+					"regex": "^[a-zA-Z0-9-]+$",
 					"required": true
 				}, {
 					"type": "radio-fieldset",
@@ -70,6 +71,7 @@
 									"en": "License key",
 									"ru": "Лицензия"
 								},
+								"regex": "^[a-zA-Z0-9-]+$",
 								"required": true
 							}
 						],
@@ -80,6 +82,7 @@
 									"en": "First name",
 									"ru": "Имя"
 								},
+								"regex": "^[a-zA-Z0-9-]+$",
 								"required": false
 							}, {
 								"type": "string",
@@ -88,6 +91,7 @@
 									"en": "Last name",
 									"ru": "Фамилия"
 								},
+								"regex": "^[a-zA-Z0-9-]+$",
 								"required": false
 							}
 						]
