@@ -14,10 +14,13 @@
 		"targetNodes": {
 			"nodeType": [
 					"tomcat7",
+					"tomcat",
 					"jetty6",
 					"tomcat6",
 					"glassfish3",
-					"tomee"
+					"glassfish",
+					"tomee",
+					"tomee-dockerized"
 			]
 		},
 		"type": "java",
