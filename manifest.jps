@@ -74,7 +74,7 @@
 									"en": "License key",
 									"ru": "Лицензия"
 								},
-								"regex": "^[a-zA-Z0-9-]+$",
+								"regex": "^[a-zA-Z0-9-_]+$",
 								"required": true
 							}
 						],
