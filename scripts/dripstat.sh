@@ -17,12 +17,20 @@ installDripstat(){
 
 if [ "${TYPE}" == "DOCKERIZED" ]
 then
-echo "${NODE_TYPE}" >> /opt/tomcat/logs/dripstat.log
+#echo "${NODE_TYPE}" >> /opt/tomcat/logs/dripstat.log
     if [[ "${NODE_TYPE}" == *"tomee"* || "${NODE_TYPE}" == *"tomcat"* ]]
     then
         echo 2 >> /opt/tomcat/logs/dripstat.log
         CONF_PATH="/opt/tomcat/lib"
         VARIABLES="/opt/tomcat/conf/variables.conf"
+        grep -q dripstat.jar ${VARIABLES} && sed -ri "/dripstat.jar/d" ${VARIABLES} && echo "-javaagent:${CONF_PATH}/dripstat/dripstat.jar" >> ${VARIABLES} || echo "-javaagent:${CONF_PATH}/dripstat/dripstat.jar" >> ${VARIABLES}
+        installDripstat;
+        exit 0;
+        
+    elif [[ "${NODE_TYPE}" == *"glassfish"* ]]
+    then
+        CONF_PATH="/opt/glassfish/glassfish/lib"
+        VARIABLES="/opt/glassfish/glassfish/domains/domain1/config/variables.conf"
         grep -q dripstat.jar ${VARIABLES} && sed -ri "/dripstat.jar/d" ${VARIABLES} && echo "-javaagent:${CONF_PATH}/dripstat/dripstat.jar" >> ${VARIABLES} || echo "-javaagent:${CONF_PATH}/dripstat/dripstat.jar" >> ${VARIABLES}
         installDripstat;
         exit 0;
