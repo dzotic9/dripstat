@@ -30,7 +30,7 @@ then
     elif [[ "${NODE_TYPE}" == *"glassfish"* ]]
     then
         CONF_PATH="/opt/glassfish/glassfish/lib"
-        DOMAIN_XML="/opt/glassfish3/glassfish/domains/domain1/config/domain.xml"
+        DOMAIN_XML="/opt/glassfish/glassfish/domains/domain1/config/domain.xml"
         VARIABLES="/opt/glassfish/glassfish/domains/domain1/config/variables.conf"
         grep -q dripstat.jar ${DOMAIN_XML} || sed -i "s|jelastic-gc-agent.jar</jvm-options>|jelastic-gc-agent.jar</jvm-options><jvm-options>-javaagent:"${CONF_PATH}"/dripstat/dripstat.jar</jvm-options>|g" ${DOMAIN_XML}
         installDripstat;
