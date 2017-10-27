@@ -32,7 +32,8 @@ then
         CONF_PATH="/opt/glassfish/glassfish/lib"
         DOMAIN_XML="/opt/glassfish/glassfish/domains/domain1/config/domain.xml"
         VARIABLES="/opt/glassfish/glassfish/domains/domain1/config/variables.conf"
-        grep -q dripstat.jar ${DOMAIN_XML} || sed -i "s|jelastic-gc-agent.jar</jvm-options>|jelastic-gc-agent.jar</jvm-options><jvm-options>-javaagent:"${CONF_PATH}"/dripstat/dripstat.jar</jvm-options>|g" ${DOMAIN_XML}
+        grep -q dripstat.jar ${DOMAIN_XML} || sed -i "s|<jvm-options>-client</jvm-options>|<jvm-options>-client</jvm-options><jvm-options>-javaagent:"${CONF_PATH}"/dripstat/dripstat.jar</jvm-options>|g" ${DOMAIN_XML}
+        sed -ri "s|useSSL= true|useSSL= false|g" ${CONF_PATH}/dripstat/config.properties
         installDripstat;
         exit 0;
     fi
