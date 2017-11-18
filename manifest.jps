@@ -125,7 +125,7 @@
 						"commands": [
 								"LIB_PATH=$(find /opt/ -name lib | head  -n 1)",
 								"rm -rf ${LIB_PATH}/dripstat",
-								"grep -q dripstat.jar ${tomcat7.SERVER_CONF}/VARIABLES.conf && sed -ri '/dripstat.jar/d' ${tomcat7.SERVER_CONF}/VARIABLES.conf"
+								"grep -q dripstat.jar ${tomcat7.SERVER_CONF}/variables.conf && sed -ri '/dripstat.jar/d' ${tomcat7.SERVER_CONF}/variables.conf"
 						]
 					}
 				]
