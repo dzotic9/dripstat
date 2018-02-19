@@ -10,7 +10,7 @@
 		],
 		"name": "DripStat",
 		"logo": "https://raw.githubusercontent.com/jelastic-jps/dripstat/master/images/dripstat.png",
-		"version": "6.1.25",
+		"version": "11.0.4",
 		"targetNodes": {
 			"nodeType": [
 					"tomcat7",
