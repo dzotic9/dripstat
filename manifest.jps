@@ -108,7 +108,7 @@
 						"nodeMission": "cp",
 						"commands": [
 								"curl -fsSL \"https://raw.githubusercontent.com/jelastic-jps/dripstat/master/scripts/dripstat.sh\" -o /tmp/dripstat.sh",
-								"/bin/bash /tmp/dripstat.sh ${settings.app_name} ${license.key} ${nodes.cp.type} ${nodes.cp.nodeType} ${tomcat7.SERVER_LIBS} ${tomcat7.SERVER_CONF}"
+								"/bin/bash /tmp/dripstat.sh ${settings.app_name} ${license.key} ${nodes.cp.type} ${nodes.cp.nodeType} ${SERVER_LIBS} ${SERVER_CONF}"
 						]
 					}
 				]
@@ -125,7 +125,7 @@
 						"commands": [
 								"LIB_PATH=$(find /opt/ -name lib | head  -n 1)",
 								"rm -rf ${LIB_PATH}/dripstat",
-								"grep -q dripstat.jar ${tomcat7.SERVER_CONF}/variables.conf && sed -ri '/dripstat.jar/d' ${tomcat7.SERVER_CONF}/variables.conf"
+								"grep -q dripstat.jar ${SERVER_CONF}/variables.conf && sed -ri '/dripstat.jar/d' ${SERVER_CONF}/variables.conf"
 						]
 					}
 				]
