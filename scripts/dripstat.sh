@@ -33,6 +33,7 @@ then
         DOMAIN_XML="/opt/glassfish/glassfish/domains/domain1/config/domain.xml"
         VARIABLES="/opt/glassfish/glassfish/domains/domain1/config/variables.conf"
         grep -q dripstat.jar ${DOMAIN_XML} || sed -i "s|<jvm-options>-XX:NewRatio=2</jvm-options>|<jvm-options>-XX:NewRatio=2</jvm-options><jvm-options>-javaagent:"${CONF_PATH}"/dripstat/dripstat.jar</jvm-options>|g" ${DOMAIN_XML}
+        grep -q dripstat.jar ${VARIABLES} && sed -ri "/dripstat.jar/d" ${VARIABLES} && echo "-javaagent:${CONF_PATH}/dripstat/dripstat.jar" >> ${VARIABLES} || echo "-javaagent:${CONF_PATH}/dripstat/dripstat.jar" >> ${VARIABLES}
         installDripstat;
         #sed -ri "s|useSSL= true|useSSL= false|g" ${CONF_PATH}/dripstat/config.properties
         exit 0;
