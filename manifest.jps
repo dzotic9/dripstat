@@ -1,144 +1,97 @@
-{
-	"jpsVersion": "0.5",
-	"jpsType": "update",
-	"application": {
-		"id": "dripstat-java",
-		"categories": [
-				"apps/dev-tools",
-				"apps/popular",
-				"apps/management-and-monitoring", "apps/dev-and-admin-tools"
-		],
-		"name": "DripStat",
-		"logo": "https://raw.githubusercontent.com/jelastic-jps/dripstat/master/images/dripstat.png",
-		"version": "11.0.4",
-		"targetNodes": {
-			"nodeType": [
-					"tomcat7",
-					"tomcat",
-					"jetty6",
-					"tomcat6",
-					"glassfish3",
-					"glassfish",
-					"tomee",
-					"tomee-dockerized"
-			]
-		},
-		"type": "java",
-		"homepage": "https://dripstat.com",
-		"license": {
-			"url": "http://7f0a21d8a92c209144be640de301ba79.app.jelastic.com/DripStat",
-			"terms": {
-				"en": "I agree with <a href='http://dripstat.com/tos.html' target='_blank'><u>terms of service</u></a>",
-				"ru": "Я соглашаюсь с <a href='http://dripstat.com/tos.html' target='_blank'><u>условиями использования</u></a>"
-			},
-			"sso": "http://7f0a21d8a92c209144be640de301ba79.app.jelastic.com/DripStat"
-		},
-		"description": {
-			"en": "DripStat is a cool new way to monitor and look inside your running Java apps and automatically track exceptions. Jelastic users can enable DripStat monitoring on their Java apps with just a few clicks.",
-			"ru": "DripStat - это продвинутое решение для контроля и мониторинга ваших Java приложений, а также для автоматического отслеживания сбоев. Теперь пользователи Jelastic могут установить систему мониторинга DripStat на их Java приложения всего в несколько кликов.",
-			"short": {
-				"ru": "Бесплатный Мониторинг Java/Scala",
-				"en": "Java/Scala Monitoring for Free"
-			}
-		},
-		"settings": {
-			"prepopulate": "http://7f0a21d8a92c209144be640de301ba79.app.jelastic.com/DripStat",
-			"fields": [{
-					"type": "string",
-					"name": "app_name",
-					"caption": {
-						"en": "Application name",
-						"ru": "Имя приложения"
-					},
-					"regex": "^[a-zA-Z0-9-]+$",
-					"required": true
-				}, {
-					"type": "radio-fieldset",
-					"name": "user_type",
-					"default": "new_user",
-					"values": {
-						"new_user": {
-							"en": "I'm a new user in DripStat",
-							"ru": "Я новый пользователь Дрипстата"
-						},
-						"have_license_key": {
-							"en": "I already have a license key",
-							"ru": "У меня уже есть лицензионный ключ"
-						}
-					},
-					"showIf": {
-						"have_license_key": [{
-								"type": "string",
-								"name": "license_key",
-								"caption": {
-									"en": "License key",
-									"ru": "Лицензия"
-								},
-								"regex": "^[a-zA-Z0-9-_]+$",
-								"required": true
-							}
-						],
-						"new_user": [{
-								"type": "string",
-								"name": "fName",
-								"caption": {
-									"en": "First name",
-									"ru": "Имя"
-								},
-								"regex": "^[a-zA-Z0-9-]+$",
-								"required": false
-							}, {
-								"type": "string",
-								"name": "lName",
-								"caption": {
-									"en": "Last name",
-									"ru": "Фамилия"
-								},
-								"regex": "^[a-zA-Z0-9-]+$",
-								"required": false
-							}
-						]
-					}
-				}
-			]
-		},
-
-		"onInstall": [{
-				"executeShellCommands": [{
-						"nodeMission": "cp",
-						"commands": [
-								"curl -fsSL \"https://raw.githubusercontent.com/jelastic-jps/dripstat/master/scripts/dripstat.sh\" -o /tmp/dripstat.sh",
-								"/bin/bash /tmp/dripstat.sh ${settings.app_name} ${license.key} ${nodes.cp.type} ${nodes.cp.nodeType} ${SERVER_LIBS} ${SERVER_CONF}"
-						]
-					}
-				]
-			}, {
-				"restartNodes": {
-					"nodeMission": "cp"
-				}
-			}
-		],
-
-		"onUninstall": [{
-				"executeShellCommands": [{
-						"nodeMission": "cp",
-						"commands": [
-								"LIB_PATH=$(find /opt/ -name lib | head  -n 1)",
-								"rm -rf ${LIB_PATH}/dripstat",
-								"grep -q dripstat.jar ${SERVER_CONF}/variables.conf && sed -ri '/dripstat.jar/d' ${SERVER_CONF}/variables.conf || echo ''"
-						]
-					}
-				]
-			}, {
-				"restartNodes": {
-					"nodeMission": "cp"
-				}
-			}
-		],
-
-		"success": {
-			"ru": "<b>Имя Вашего Приложения:</b> ${settings.app_name}<p><b>Ваш лицензионный ключ:</b> ${license.key}<p><b>Ваш пароль: </b>${license.password}</br><p>\n\nИзменить настройки DripStat можно в директории<b> SERVER_LIBS</b>  (/opt/tomcat/lib/dripstat directory for example).\n<p> Можете перейти к <a href='https://dripstat.com/login.html' target='_blank'><u>панели управления DripStat</u></a> и просмотреть данные по производительности. <a href='https://dripstat.com/' target='_blank'><u>Больше информации</u></a>",
-			"en": "<b>Your Application name:</b> ${settings.app_name}<p><b>Your License Key:</b> ${license.key}<p><b>Your Password: </b>${license.password}</br><p>\n\nDripStat settings can be edited in <b> SERVER_LIBS</b> (/opt/tomcat/lib/dripstat directory for example).\n<p> You can go to <a href='https://dripstat.com/login.html' target='_blank'><u>DripStat control panel</u></a> now to see your performance data. <a href='https://dripstat.com/' target='_blank'><u>More info</u></a>"
-		}
-	}
-}
+type: update
+id: dripstat-java
+categories:
+- apps/dev-tools
+- apps/popular
+- apps/management-and-monitoring
+- apps/dev-and-admin-tools
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/dripstat/master/
+name: DripStat
+logo: images/dripstat.png
+targetNodes:
+  nodeType:
+  - tomcat7
+  - tomcat
+  - jetty6
+  - tomcat6
+  - glassfish3
+  - glassfish
+  - tomee
+  - tomee-dockerized
+homepage: https://dripstat.com
+license:
+  url: http://7f0a21d8a92c209144be640de301ba79.app.jelastic.com/DripStat
+  terms: I agree with <a href='http://dripstat.com/tos.html' target='_blank'><u>terms
+    of service</u></a>
+  sso: http://7f0a21d8a92c209144be640de301ba79.app.jelastic.com/DripStat
+description:
+  en: DripStat is a cool new way to monitor and look inside your running Java apps
+    and automatically track exceptions. Jelastic users can enable DripStat monitoring
+    on their Java apps with just a few clicks.
+  short: Java/Scala Monitoring for Free
+settings:
+  prepopulate: http://7f0a21d8a92c209144be640de301ba79.app.jelastic.com/DripStat
+  fields:
+  - type: string
+    name: app_name
+    caption: Application name
+    regex: "^[a-zA-Z0-9-]+$"
+    required: true
+  - type: radio-fieldset
+    name: user_type
+    default: new_user
+    values:
+      new_user: I'm a new user in DripStat
+      have_license_key: I already have a license key
+    showIf:
+      have_license_key:
+      - type: string
+        name: license_key
+        caption: License key
+        regex: "^[a-zA-Z0-9-_]+$"
+        required: true
+      new_user:
+      - type: string
+        name: fName
+        caption: First name
+        regex: "^[a-zA-Z0-9-]+$"
+        required: false
+      - type: string
+        name: lName
+        caption: Last name
+        regex: "^[a-zA-Z0-9-]+$"
+        required: false
+onInstall:
+- script: |
+    var oNodes = jelastic.env.control.GetEnvInfo("${env.appid}", session).nodes, oMatch;
+    for (var i =0, n = oNodes.length; i<n; i++){
+      if (oNodes[i].engineType == 'java') {
+        oMatch = oNodes[i].customitem.engineVersion.match(/([6-9]|[1][0-9])\..{1,2}\..{0,2}/);
+        if (oMatch && oMatch[1]) {
+          if (oMatch[1] > 8) {
+            return {
+              result: "warning",
+              message: "Your JAVA version is not supported by DriptStat application"
+            }
+          }
+        }
+      }
+    }
+- cmd [cp]:
+  - curl -fsSL "${baseUrl}scripts/dripstat.sh" -o /tmp/dripstat.sh
+  - "/bin/bash /tmp/dripstat.sh ${settings.app_name} ${license.key} ${nodes.cp.type}
+    ${nodes.cp.nodeType} ${SERVER_LIBS} ${SERVER_CONF}"
+- restartNodes:
+    nodeMission: cp
+onUninstall:
+- cmd [cp]:
+  - LIB_PATH=$(find /opt/ -name lib | head  -n 1)
+  - rm -rf ${LIB_PATH}/dripstat
+  - grep -q dripstat.jar ${SERVER_CONF}/variables.conf && sed -ri '/dripstat.jar/d'
+    ${SERVER_CONF}/variables.conf || echo ''
+- restartNodes:
+    nodeMission: cp
+success: |-
+  <b>Your Application name:</b> ${settings.app_name}<p><b>Your License Key:</b> ${license.key}<p><b>Your Password: </b>${license.password}</br><p>
+  DripStat settings can be edited in <b> SERVER_LIBS</b> (/opt/tomcat/lib/dripstat directory for example).
+  <p> You can go to <a href='https://dripstat.com/login.html' target='_blank'><u>DripStat control panel</u></a> now to see your performance data. <a href='https://dripstat.com/' target='_blank'><u>More info</u></a>
